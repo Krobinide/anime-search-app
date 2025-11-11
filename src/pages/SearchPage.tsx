@@ -1,10 +1,9 @@
 import { useEffect, useRef, useCallback, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../store/store'
-import { searchAnime, setSearchQuery } from '../store/animeSlice'
+import { searchAnime } from '../store/animeSlice'
 import AnimeCard from '../components/AnimeCard'
 import SkeletonCard from '../components/SkeletonCard'
-import { SearchIcon } from '../components/Icons'
 
 function SearchPage() {
   const dispatch = useDispatch<AppDispatch>()
