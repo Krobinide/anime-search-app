@@ -14,7 +14,7 @@ function SearchPage() {
   // Local state for the input value (separate from Redux)
   const [inputValue, setInputValue] = useState('')
   
-  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null)
+  const debounceTimerRef = useRef<number | null>(null)
   const abortControllerRef = useRef<AbortController | null>(null)
 
   // Debounced search function
@@ -33,7 +33,7 @@ function SearchPage() {
     }
 
     // Debounce search by 250ms
-    debounceTimerRef.current = setTimeout(() => {
+    debounceTimerRef.current = window.setTimeout(() => {
       if (value.trim()) {
         abortControllerRef.current = new AbortController()
         dispatch(searchAnime({ 
@@ -101,11 +101,10 @@ function SearchPage() {
             Found {searchResults.length} results for "{searchQuery}"
           </div>
           <div className="anime-grid">
-            {searchResults.map((anime) => (
+            {searchResults.map((anime: typeof searchResults[0]) => (
               <AnimeCard key={anime.mal_id} anime={anime} />
             ))}
           </div>
-
           {totalPages > 1 && (
             <div className="pagination">
               <button
